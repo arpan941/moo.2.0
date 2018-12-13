@@ -11,13 +11,13 @@ class Authentication:
         api = API(auth,wait_on_rate_limit=True)
         csvFile = open(tweetsFile, 'a')
         csvWriter = csv.writer(csvFile)
-        for tweet in Cursor(api.search, q=searchQuery, lang="en", since="2018-04-03", count=100).items(): #if you put count inside the cursor method as count=100, you can restrict the no of tweets
-            print(tweet.created_at, tweet.text)
-            csvWriter.writerow([tweet.created_at,tweet.text.encode('utf-8')])
+        for tweet in Cursor(api.search, q=searchQuery, lang="en", since_id=1070342209952730000, count=100).items(): #if you put count inside the cursor method as count=100, you can restrict the no of tweets
+            print(tweet.created_at, tweet.id,tweet.text)
+            csvWriter.writerow([tweet.created_at,tweet.id,tweet.text.encode('utf-8')])
         tweets=api.search(q="$AAPL")
 
 if __name__ == '__main__':
     searchQuery = "$AAPL"
-    tweetsFile = "tweets1.csv"
+    tweetsFile = "tweets3.csv"
     auth = Authentication()
     auth.authenticate(tweetsFile, searchQuery)
