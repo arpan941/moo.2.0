@@ -32,7 +32,6 @@ class TwitterClient:
         for tweet in Cursor(self.twitterClient.user_timeline, id = self.handlefortimeline, since_id = from_id).items(100):
             csvWriter.writerow([tweet.created_at,tweet.id,tweet.text.encode('utf-8')])
         csvFile.close()
-        return tweets
 
     def find_replies_to_tweets(self):
         today = datetime.datetime.today()
